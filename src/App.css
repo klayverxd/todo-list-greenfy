@@ -1,0 +1,9 @@
+#root {
+	display: flex;
+	max-width: 1280px;
+	height: 100vh;
+	margin: 0 auto;
+	padding: 0 2rem;
+	text-align: center;
+	align-items: center;
+}
