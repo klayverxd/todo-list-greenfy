@@ -19,6 +19,7 @@ const useAuth = (): UseAuthReturnType => {
 
 	const handleLogout = () => {
 		localStorage.removeItem("authToken");
+		localStorage.removeItem("tasks");
 		setIsAuthenticated(false);
 	};
 

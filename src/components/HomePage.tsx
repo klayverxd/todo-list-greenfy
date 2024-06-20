@@ -13,13 +13,6 @@ const HomePage = ({ onLogout }: HomePageProps) => {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    if (savedTasks) {
-      setTasks(JSON.parse(savedTasks));
-    }
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
