@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Container, Box, Typography, TextField, List, ListItem, ListItemText, IconButton } from '@mui/material';
+import { Button, Container, Box, Typography, TextField, List, ListItem, ListItemText, IconButton, Checkbox } from '@mui/material';
 import { HomePageProps, Task } from '../types/HomePage';
 import { Add, Delete } from '@mui/icons-material';
 
@@ -33,6 +33,12 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 
   const handleDeleteTask = (id: number) => {
     setTasks(tasks.filter(task => task.id !== id));
+  };
+
+  const handleToggleComplete = (id: number) => {
+    setTasks(tasks.map(task =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
   };
 
   return (
@@ -90,6 +96,11 @@ const HomePage = ({ onLogout }: HomePageProps) => {
                     <Delete />
                   </IconButton>
                 }>
+                  <Checkbox
+                    checked={task.completed}
+                    onChange={() => handleToggleComplete(task.id)}
+                  />
+
                   <ListItemText
                     primary={task.title}
                     secondary={task.description}
