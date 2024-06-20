@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Box, Typography } from '@mui/material';
+import { TextField, Button, Container, Box, Typography, InputAdornment } from '@mui/material';
 
 import { login } from '../api/auth';
 import { LoginFormProps } from '../types/Login';
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+import { Person, Password } from '@mui/icons-material';
+
+const LoginForm = ({ onLogin }: LoginFormProps) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -27,9 +29,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
   return (
     <Container maxWidth="xs">
-      <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box
+          component="img"
+          sx={{
+            height: 120,
+            width: 120,
+            maxHeight: { xs: 80, md: 120 },
+            maxWidth: { xs: 80, md: 120 },
+            mb: 2
+          }}
+          alt="Logo"
+          src="/logo-dark.png"
+        />
+
         <Typography component="h1" variant="h5">
-          Login
+          ToDo List Login
         </Typography>
 
         {error && <Typography color="error">{error}</Typography>}
@@ -42,9 +57,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             id="username"
             label="Username"
             name="username"
-            autoComplete="username"
             autoFocus
             value={username}
+            variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Person />
+                </InputAdornment>
+              ),
+            }}
             onChange={(e) => setUsername(e.target.value)}
           />
 
@@ -56,8 +78,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
             value={password}
+            variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Password />
+                </InputAdornment>
+              ),
+            }}
             onChange={(e) => setPassword(e.target.value)}
           />
 
@@ -65,14 +94,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, fontWeight: 'bold' }}
             disabled={loading}
           >
             {loading ? 'Loading...' : 'Login'}
           </Button>
         </Box>
       </Box>
-    </Container>
+    </Container >
   );
 };
 

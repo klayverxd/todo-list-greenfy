@@ -1,38 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
-import LoginForm from './components/LoginForm.jsx';
-import HomePage from './components/HomePage.jsx';
+import LoginForm from './components/LoginForm';
+import HomePage from './components/HomePage';
 
-import './App.css'
+import useAuth from './hooks/useAuth';
+
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, IconButton } from '@mui/material';
+import DarkModeIcon from '@mui/icons-material/LightMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { darkTheme, lightTheme } from './theme';
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, handleLogin, handleLogout } = useAuth();
 
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
+  const [darkMode, setDarkMode] = useState(false);
 
-  const handleLogin = (token: string) => {
-    localStorage.setItem('authToken', token);
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    setIsAuthenticated(false);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <LoginForm onLogin={handleLogin} />} />
-        <Route path="/" element={isAuthenticated ? <HomePage onLogout={handleLogout} /> : <Navigate to="/login" />} />
-      </Routes>
-    </Router>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
+      <Router>
+        <IconButton onClick={toggleDarkMode} sx={{ position: 'absolute', top: 16, right: 16 }}>
+          {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+        </IconButton>
+        <Routes>
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <LoginForm onLogin={handleLogin} />} />
+          <Route path="/" element={isAuthenticated ? <HomePage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 
