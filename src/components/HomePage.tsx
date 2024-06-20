@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Button, Container, Box, Typography, TextField, List, ListItem, ListItemText } from '@mui/material';
+import { Button, Container, Box, Typography, TextField, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import { HomePageProps, Task } from '../types/HomePage';
-import { Add } from '@mui/icons-material';
+import { Add, Delete } from '@mui/icons-material';
 
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -29,6 +29,10 @@ const HomePage = ({ onLogout }: HomePageProps) => {
     setTasks([...tasks, newTask]);
     setTitle('');
     setDescription('');
+  };
+
+  const handleDeleteTask = (id: number) => {
+    setTasks(tasks.filter(task => task.id !== id));
   };
 
   return (
@@ -81,7 +85,11 @@ const HomePage = ({ onLogout }: HomePageProps) => {
           {tasks.length ?
             <List sx={{ width: '100%' }}>
               {tasks.map(task => (
-                <ListItem key={task.id}>
+                <ListItem key={task.id} secondaryAction={
+                  <IconButton edge="end" onClick={() => handleDeleteTask(task.id)}>
+                    <Delete />
+                  </IconButton>
+                }>
                   <ListItemText
                     primary={task.title}
                     secondary={task.description}
