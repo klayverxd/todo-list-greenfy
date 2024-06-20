@@ -104,6 +104,7 @@ const HomePage = ({ onLogout }: HomePageProps) => {
                   <ListItemText
                     primary={task.title}
                     secondary={task.description}
+                    sx={{ textDecoration: task.completed ? 'line-through' : 'none' }}
                   />
                 </ListItem>
               ))}
