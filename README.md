@@ -1,30 +1,57 @@
-# React + TypeScript + Vite
+<h1 align="center">
+  <img alt="Todo List" src=".github/cover_readme.png" width="100%" />
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h3 align="center">
+  ✅ ToDo List
+</h3>
 
-Currently, two official plugins are available:
+<p align="center">Aplicação Web para lista de tarefas</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center">
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/klayverxd/todo-list-greenfy?color=%237844e9">
+<a href="https://www.linkedin.com/in/klayverximenes/" target="_blank" rel="noopener noreferrer">
+<img alt="Made by" src="https://img.shields.io/badge/made%20by-Klayver-7844e9">
+</a>
+<a href="https://github.com/klayverxd/todo-list-greenfy/commits/main">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/klayverxd/todo-list-greenfy?color=%237844e9">
+</a>
+<a href="https://github.com/matheralvs/projeto-dsm/issues">
+<img alt="Repository issues" src="https://img.shields.io/github/issues/klayverxd/lp-raartsu?color=%237844e9">
+</a>
+</p>
 
-## Expanding the ESLint configuration
+<p align="center">
+<a href="#-sobre-o-projeto">Sobre o projeto</a> •
+<a href="#-tecnologias">Tecnologias</a> •
+<a href="#-layout-da-aplicação">Layout da aplicação</a>
+</p>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## ✅ Sobre o projeto
 
-- Configure the top-level `parserOptions` property like this:
+Este projeto é um desafio técnico para desenvolvedor front-end. A proposta do mesmo foi construir uma interface para listagens de tarefas no estilo to-do list utilizando ReactJS, Vite e Material UI.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## 🎨 Layout da aplicação
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Você pode ver o layout do projeto no Figma no link abaixo:
+
+- [Layout Responsivo](https://www.figma.com/design/yjxRfWK721FS8hnYND9hIS/ToDo-List-Greenfy?node-id=14-52&t=AAhkdqAmmwqepBNd-1)
+
+Lembrando que você precisa ter uma conta no [Figma](http://figma.com/) para poder acessar.
+
+
+## 🚀 Tecnologias
+
+Tecnologias que usei para desenvolver a aplicação:
+
+- [ReactJS](https://pt-br.reactjs.org/)
+  
+- [Vite](https://vitejs.dev/)
+
+- [TypeScript](https://www.typescriptlang.org/)
+  
+- [Material UI](https://mui.com/material-ui/)
+
+## 🚀 Deploy da aplicação com Vercel
+
+> https://todo-list-greenfy-em9i0c0m2-klayver-ximenes-projects.vercel.app
