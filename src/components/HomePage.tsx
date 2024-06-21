@@ -167,7 +167,7 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 						<>
 							{filteredTasks.length ? (
 								<List sx={{ width: "100%" }}>
-									{filteredTasks.map(task => (
+									{filteredTasks.map((task, index) => (
 										<>
 											<ListItem
 												key={task.id}
@@ -194,9 +194,10 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 												/>
 
 												<ListItemText
-													primary={task.title}
+													primary={`${index}. ${task.title}`}
 													secondary={task.description}
 													sx={{
+														maxWidth: "sm",
 														textDecoration: task.completed
 															? "line-through"
 															: "none",
