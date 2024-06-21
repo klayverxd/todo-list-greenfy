@@ -9,15 +9,15 @@
 <p align="center">Aplicação Web para lista de tarefas</p>
 
 <p align="center">
-<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/klayverxd/todo-list-greenfy?color=%237844e9">
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/klayverxd/todo-list-greenfy">
 <a href="https://www.linkedin.com/in/klayverximenes/" target="_blank" rel="noopener noreferrer">
 <img alt="Made by" src="https://img.shields.io/badge/made%20by-Klayver-7844e9">
 </a>
 <a href="https://github.com/klayverxd/todo-list-greenfy/commits/main">
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/klayverxd/todo-list-greenfy?color=%237844e9">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/klayverxd/todo-list-greenfy">
 </a>
 <a href="https://github.com/matheralvs/projeto-dsm/issues">
-<img alt="Repository issues" src="https://img.shields.io/github/issues/klayverxd/lp-raartsu?color=%237844e9">
+<img alt="Repository issues" src="https://img.shields.io/github/issues/klayverxd/todo-list-greenfy">
 </a>
 </p>
 
