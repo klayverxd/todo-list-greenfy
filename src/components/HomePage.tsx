@@ -194,7 +194,7 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 												/>
 
 												<ListItemText
-													primary={`${index}. ${task.title}`}
+													primary={`${index + 1}. ${task.title}`}
 													secondary={task.description}
 													sx={{
 														maxWidth: "sm",
