@@ -11,9 +11,13 @@ import {
 	IconButton,
 	Checkbox,
 	Divider,
+	Dialog,
+	DialogTitle,
+	DialogContent,
+	DialogActions,
 } from "@mui/material";
 import { HomePageProps, Task } from "../types/HomePage";
-import { Add, Delete, Search } from "@mui/icons-material";
+import { Add, Delete, Edit, Search } from "@mui/icons-material";
 
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
@@ -23,6 +27,10 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [searchTerm, setSearchTerm] = useState("");
+
+	const [editTask, setEditTask] = useState<Task | null>(null);
+	const [editTitle, setEditTitle] = useState("");
+	const [editDescription, setEditDescription] = useState("");
 
 	useEffect(() => {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -51,6 +59,33 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 				task.id === id ? { ...task, completed: !task.completed } : task
 			)
 		);
+	};
+
+	const handleEditTask = (task: Task) => {
+		setEditTask(task);
+		setEditTitle(task.title);
+		setEditDescription(task.description);
+	};
+
+	const handleUpdateTask = () => {
+		if (editTask) {
+			setTasks(
+				tasks.map(task =>
+					task.id === editTask.id
+						? { ...task, title: editTitle, description: editDescription }
+						: task
+				)
+			);
+			setEditTask(null);
+			setEditTitle("");
+			setEditDescription("");
+		}
+	};
+
+	const handleCancelEditTask = () => {
+		setEditTask(null);
+		setEditTitle("");
+		setEditDescription("");
 	};
 
 	const filteredTasks = tasks.filter(task =>
@@ -137,12 +172,20 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 											<ListItem
 												key={task.id}
 												secondaryAction={
-													<IconButton
-														edge="end"
-														onClick={() => handleDeleteTask(task.id)}
-													>
-														<Delete />
-													</IconButton>
+													<>
+														<IconButton
+															edge="end"
+															onClick={() => handleEditTask(task)}
+														>
+															<Edit />
+														</IconButton>
+														<IconButton
+															edge="end"
+															onClick={() => handleDeleteTask(task.id)}
+														>
+															<Delete />
+														</IconButton>
+													</>
 												}
 											>
 												<Checkbox
@@ -192,7 +235,7 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 						</Box>
 					)}
 				</Box>
-        
+
 				<Button
 					variant="contained"
 					sx={{ mt: 3, gap: 1, fontWeight: "bold" }}
@@ -200,6 +243,37 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 				>
 					<LogoutOutlinedIcon /> Logout
 				</Button>
+
+				<Dialog open={!!editTask} onClose={handleCancelEditTask}>
+					<DialogTitle>Edit Task</DialogTitle>
+					<DialogContent>
+						<TextField
+							label="Title"
+							fullWidth
+							value={editTitle}
+							onChange={e => setEditTitle(e.target.value)}
+							sx={{ mb: 2, mt: 2 }}
+						/>
+
+						<TextField
+							label="Description"
+							fullWidth
+							value={editDescription}
+							onChange={e => setEditDescription(e.target.value)}
+							sx={{ mb: 2 }}
+						/>
+					</DialogContent>
+
+					<DialogActions>
+						<Button onClick={handleCancelEditTask} sx={{ fontWeight: "bold" }}>
+							Cancel
+						</Button>
+
+						<Button onClick={handleUpdateTask} sx={{ fontWeight: "bold" }}>
+							Update
+						</Button>
+					</DialogActions>
+				</Dialog>
 			</Box>
 		</Container>
 	);
