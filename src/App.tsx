@@ -12,30 +12,57 @@ import HomePage from "./components/HomePage";
 import useAuth from "./hooks/useAuth";
 
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, IconButton } from "@mui/material";
+import { Box, CssBaseline, IconButton } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/LightMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { darkTheme, lightTheme } from "./theme";
+import { getDarkTheme, getLightTheme } from "./theme";
 
 const App = () => {
 	const { isAuthenticated, handleLogin, handleLogout } = useAuth();
 
 	const [darkMode, setDarkMode] = useState(false);
+	const [primaryColor, setPrimaryColor] = useState("#01F36D");
+
+	const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setPrimaryColor(event.target.value);
+	};
 
 	const toggleDarkMode = () => {
 		setDarkMode(!darkMode);
 	};
 
+	const theme = darkMode
+		? getDarkTheme(primaryColor)
+		: getLightTheme(primaryColor);
+
 	return (
-		<ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<Router>
-				<IconButton
-					onClick={toggleDarkMode}
-					sx={{ position: "absolute", top: 16, right: 16 }}
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						position: "absolute",
+						gap: 2,
+						top: 16,
+						right: 16,
+					}}
 				>
-					{darkMode ? <LightModeIcon /> : <DarkModeIcon />}
-				</IconButton>
+					<input
+						type="color"
+						value={primaryColor}
+						onChange={handleColorChange}
+						style={{
+							border: "none",
+							background: "none",
+						}}
+					/>
+					<IconButton onClick={toggleDarkMode}>
+						{darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+					</IconButton>
+				</Box>
+
 				<Routes>
 					<Route
 						path="/login"

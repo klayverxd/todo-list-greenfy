@@ -15,6 +15,7 @@ import {
 	DialogTitle,
 	DialogContent,
 	DialogActions,
+	useTheme,
 } from "@mui/material";
 import { HomePageProps, Task } from "../types/HomePage";
 import { Add, Delete, Edit, Search } from "@mui/icons-material";
@@ -23,6 +24,8 @@ import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBullet
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 const HomePage = ({ onLogout }: HomePageProps) => {
+	const theme = useTheme();
+
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
@@ -99,14 +102,28 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 			>
 				<Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
 					<Box
-						component="img"
 						sx={{
 							height: 24,
 							width: 24,
 						}}
-						alt="Logo"
-						src="/logo-light.png"
-					/>
+					>
+						<svg
+							width="auto"
+							height="auto"
+							viewBox="0 0 254 254"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M126.857 253.307C196.693 253.307 253.307 196.693 253.307 126.857C253.307 57.0202 196.693 0.406586 126.857 0.406586C57.0202 0.406586 0.406601 57.0202 0.406601 126.857C0.406601 196.693 57.0202 253.307 126.857 253.307Z"
+								fill={theme.palette.primary.main}
+							/>
+							<path
+								d="M108.53 181.652C108.502 181.652 108.474 181.652 108.448 181.652C104.795 181.626 101.331 180.025 98.9477 177.26L61.0745 133.275C56.5167 127.983 57.1124 119.997 62.4064 115.44C67.7005 110.885 75.6837 111.48 80.2415 116.771L108.656 149.772L173.584 76.3328C178.207 71.1006 186.198 70.6088 191.433 75.2341C196.665 79.8593 197.157 87.851 192.532 93.0832L118.008 177.383C115.603 180.098 112.152 181.652 108.53 181.652Z"
+								fill="white"
+							/>
+						</svg>
+					</Box>
 
 					<Typography component="h1" variant="h5">
 						ToDo List
