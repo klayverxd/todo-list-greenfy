@@ -10,6 +10,7 @@ import {
 	ListItemText,
 	IconButton,
 	Checkbox,
+	Divider,
 } from "@mui/material";
 import { HomePageProps, Task } from "../types/HomePage";
 import { Add, Delete, Search } from "@mui/icons-material";
@@ -132,32 +133,35 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 							{filteredTasks.length ? (
 								<List sx={{ width: "100%" }}>
 									{filteredTasks.map(task => (
-										<ListItem
-											key={task.id}
-											secondaryAction={
-												<IconButton
-													edge="end"
-													onClick={() => handleDeleteTask(task.id)}
-												>
-													<Delete />
-												</IconButton>
-											}
-										>
-											<Checkbox
-												checked={task.completed}
-												onChange={() => handleToggleComplete(task.id)}
-											/>
+										<>
+											<ListItem
+												key={task.id}
+												secondaryAction={
+													<IconButton
+														edge="end"
+														onClick={() => handleDeleteTask(task.id)}
+													>
+														<Delete />
+													</IconButton>
+												}
+											>
+												<Checkbox
+													checked={task.completed}
+													onChange={() => handleToggleComplete(task.id)}
+												/>
 
-											<ListItemText
-												primary={task.title}
-												secondary={task.description}
-												sx={{
-													textDecoration: task.completed
-														? "line-through"
-														: "none",
-												}}
-											/>
-										</ListItem>
+												<ListItemText
+													primary={task.title}
+													secondary={task.description}
+													sx={{
+														textDecoration: task.completed
+															? "line-through"
+															: "none",
+													}}
+												/>
+											</ListItem>
+											<Divider variant="middle" />
+										</>
 									))}
 								</List>
 							) : (
@@ -188,6 +192,7 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 						</Box>
 					)}
 				</Box>
+        
 				<Button
 					variant="contained"
 					sx={{ mt: 3, gap: 1, fontWeight: "bold" }}
