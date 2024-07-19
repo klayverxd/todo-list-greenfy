@@ -33,7 +33,7 @@ const HomePage = ({ onLogout }: HomePageProps) => {
 
 	const [editTask, setEditTask] = useState<Task | null>(null);
 	const [editTitle, setEditTitle] = useState("");
-	const [editDescription, setEditDescription] = useState(" ");
+	const [editDescription, setEditDescription] = useState("");
 
 	useEffect(() => {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
